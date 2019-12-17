@@ -5,18 +5,20 @@ from ch3.mnist import load_mnist
 
 
 def img_show(img):
-  pil_img = Image.fromarray(np.uint8(img))
-  pil_img.show()
+    pil_img = Image.fromarray(np.uint8(img))
+    pil_img.show()
 
 
-sys.path.append(os.pardir)  # Set to bring parent directory's file
+if __name__ == '__main__':
+    sys.path.append(os.pardir)  # Set to bring parent directory's file
+    dataset_dir = os.path.dirname(os.path.abspath('__file__'))
+    save_file = dataset_dir + "/mnist.pkl"
+    (x_train, t_train), (x_test, t_test) = load_mnist(save_file, flatten=True, normalize=False)
 
-(x_train, t_train), (x_test, t_test) = load_mnist(flatten=True, normalize = False)
+    img = x_train[0]
+    label = t_train[0]
+    print(label)
 
-img = x_train[0]
-label = t_train[0]
-print(label)
-
-img = img.reshape(28,28)
-print(img.shape)
-img_show(img)
+    img = img.reshape(28,28)
+    print(img.shape)
+    img_show(img)

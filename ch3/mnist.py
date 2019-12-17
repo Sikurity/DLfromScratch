@@ -62,11 +62,10 @@ def _load_img(dataset_dir, file_name):
 
 
 def _convert_numpy(dataset_dir):
-    dataset = {}
-    dataset['train_img'] = _load_img(dataset_dir, key_file['train_img'])
-    dataset['train_label'] = _load_label(dataset_dir, key_file['train_label'])
-    dataset['test_img'] = _load_img(dataset_dir, key_file['test_img'])
-    dataset['test_label'] = _load_label(dataset_dir, key_file['test_label'])
+    dataset = {'train_img': _load_img(dataset_dir, key_file['train_img']),
+               'train_label': _load_label(dataset_dir, key_file['train_label']),
+               'test_img': _load_img(dataset_dir, key_file['test_img']),
+               'test_label': _load_label(dataset_dir, key_file['test_label'])}
 
     return dataset
 
