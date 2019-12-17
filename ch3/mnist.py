@@ -35,11 +35,13 @@ def _download(file_name):
     print("Downloading " + file_name + " ... ")
     urllib.request.urlretrieve(url_base + file_name, file_path)
     print("Done")
-    
+
+
 def download_mnist():
     for v in key_file.values():
        _download(v)
-        
+
+
 def _load_label(file_name):
     file_path = dataset_dir + "/" + file_name
     
@@ -49,6 +51,7 @@ def _load_label(file_name):
     print("Done")
     
     return labels
+
 
 def _load_img(file_name):
     file_path = dataset_dir + "/" + file_name
@@ -60,7 +63,8 @@ def _load_img(file_name):
     print("Done")
     
     return data
-    
+
+
 def _convert_numpy():
     dataset = {}
     dataset['train_img'] =  _load_img(key_file['train_img'])
@@ -70,6 +74,7 @@ def _convert_numpy():
     
     return dataset
 
+
 def init_mnist():
     download_mnist()
     dataset = _convert_numpy()
@@ -77,6 +82,7 @@ def init_mnist():
     with open(save_file, 'wb') as f:
         pickle.dump(dataset, f, -1)
     print("Done!")
+
 
 def _change_one_hot_label(X):
     T = np.zeros((X.size, 10))
