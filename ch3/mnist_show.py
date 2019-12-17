@@ -13,7 +13,7 @@ if __name__ == '__main__':
     sys.path.append(os.pardir)  # Set to bring parent directory's file
     dataset_dir = os.path.dirname(os.path.abspath('__file__'))
     save_file = dataset_dir + "/mnist.pkl"
-    (x_train, t_train), (x_test, t_test) = load_mnist(save_file, flatten=True, normalize=False)
+    (x_train, t_train), (x_test, t_test) = load_mnist(dataset_dir, save_file, flatten=True, normalize=False)
 
     img = x_train[0]
     label = t_train[0]

@@ -87,9 +87,9 @@ def _change_one_hot_label(X):
     return T
 
 
-def load_mnist(save_file, normalize=True, flatten=True, one_hot_label=False):
+def load_mnist(dataset_dir, save_file, normalize=True, flatten=True, one_hot_label=False):
     if not os.path.exists(save_file):
-        init_mnist(save_file)
+        init_mnist(dataset_dir, save_file)
 
     with open(save_file, 'rb') as f:
         dataset = pickle.load(f)

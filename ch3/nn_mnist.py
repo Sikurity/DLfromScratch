@@ -5,8 +5,8 @@ from ch3.mnist import load_mnist
 from ch3.basic import sigmoid, identity_function
 
 
-def get_data(save_file):
-    (x_train, t_train), (x_test, t_test) = load_mnist(save_file, flatten=True, normalize=True, one_hot_label=False)
+def get_data(dataset_dir, save_file):
+    (x_train, t_train), (x_test, t_test) = load_mnist(dataset_dir, save_file, flatten=True, normalize=True, one_hot_label=False)
     return x_test, t_test
 
 
@@ -34,7 +34,7 @@ if __name__ == '__main__':
     sys.path.append(os.pardir)  # Set to bring parent directory's file
     dataset_dir = os.path.dirname(os.path.abspath('__file__'))
     save_file = dataset_dir + "/mnist.pkl"
-    x, t = get_data(save_file)
+    x, t = get_data(dataset_dir, save_file)
     network = init_network()
 
     batch_size = 100
