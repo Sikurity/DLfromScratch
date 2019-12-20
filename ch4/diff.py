@@ -2,9 +2,13 @@ import numpy as np
 import matplotlib.pylab as plt
 
 
-def numerical_diff(f, *args):
+def numerical_diff(f, x):
     h = 1e-4    # 0.0001
-    # return (f(x + h) - f(x - h)) / (2 * h)
+    return (f(x + h) - f(x - h)) / (2 * h)
+
+
+def numerical_descent(f, *args):
+    h = 1e-4    # 0.0001
     grad = np.zeros_like(args)     # x와 같은 형태의 배열 생성
 
     xs = list(args)
@@ -23,7 +27,7 @@ def numerical_diff(f, *args):
     return grad
 
 
-def gradient_descent(f, *init_x, lr=0.01, step=100, debug=False):
+def numerical_descent(f, *init_x, lr=0.01, step=100, debug=False):
     x = init_x
 
     for i in range(step):
@@ -57,6 +61,6 @@ if __name__ == '__main__':
         return x[0]**2 + x[1]**2
 
     init_x = [-3.0, 4.0]
-    gradient_descent(f2x, *init_x, lr=0.1, step=100, debug=True)
-    gradient_descent(f2x, *init_x, lr=10.0, step=100, debug=True)
-    gradient_descent(f2x, *init_x, lr=1e-10, step=100, debug=True)
+    numerical_descent(f2x, *init_x, lr=0.1, step=100, debug=True)
+    numerical_descent(f2x, *init_x, lr=10.0, step=100, debug=True)
+    numerical_descent(f2x, *init_x, lr=1e-10, step=100, debug=True)

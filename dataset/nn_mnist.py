@@ -1,0 +1,49 @@
+import pickle
+import sys, os
+import numpy as np
+from ch3.mnist import load_mnist
+from ch3.basic import sigmoid, identity_function
+
+
+def get_data(dataset_dir, save_file):
+    (x_train, t_train), (x_test, t_test) = load_mnist(dataset_dir, save_file, flatten=True, normalize=True, one_hot_label=False)
+    return x_test, t_test
+
+
+def init_network():
+    with open("sample_weight.pkl", 'rb') as f:
+        network = pickle.load(f)
+    return network
+
+
+def forward(network, x):
+    W1, W2, W3 = network['W1'], network['W2'], network['W3']
+    b1, b2, b3 = network['b1'], network['b2'], network['b3']
+
+    a1 = np.dot(x, W1) + b1
+    z1 = sigmoid(a1)
+    a2 = np.dot(z1, W2) + b2
+    z2 = sigmoid(a2)
+    a3 = np.dot(z2, W3) + b3
+    y = identity_function(a3)
+
+    return y
+
+
+if __name__ == '__main__':
+    sys.path.append(os.pardir)  # Set to bring parent directory's file
+    dataset_dir = os.path.dirname(os.path.abspath('__file__'))
+    save_file = dataset_dir + "/mnist.pkl"
+    x, t = get_data(dataset_dir, save_file)
+    network = init_network()
+
+    batch_size = 100
+    accuracy_cnt = 0
+
+    for i in range(0, len(x), batch_size):              # 0 to len(x) with interval batch_size
+        x_batch = x[i:i+batch_size]
+        y_batch = forward(network, x_batch)
+        p = np.argmax(y_batch, axis=1)                  # index of highest value of 1st dimension
+        accuracy_cnt += np.sum(p == t[i:i+batch_size])
+
+    print("Accuracy:" + str(float(accuracy_cnt) / len(x)))
