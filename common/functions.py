@@ -29,10 +29,6 @@ def relu_grad(x):
     return grad
 
 
-def identity_function(x):
-    return x
-
-
 def softmax(x):
     if x.ndim == 2:
         x = x.T
@@ -48,8 +44,8 @@ def sum_squared_error(y, t):
     return 0.5 * np.sum((y - t) ** 2)
 
 
-def cross_entropy_error(y, t):                          # t -> Answer = 1, Not Answer = 0
-    if y.ndim == 1:     # For Batch
+def cross_entropy_error(y, t):
+    if y.ndim == 1:         # For Batch
         y = y.reshape(1, -1)
         t = t.reshape(1, -1)
 
