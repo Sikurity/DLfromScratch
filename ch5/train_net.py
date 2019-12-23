@@ -1,7 +1,7 @@
 import numpy as np
 import os
 from dataset.mnist import load_mnist
-from ch4.multinet import MultiNet
+from ch5.multi_layer import MultiNet
 import matplotlib.pyplot as plt
 
 dataset_dir = os.path.dirname(os.path.abspath('__file__'))
