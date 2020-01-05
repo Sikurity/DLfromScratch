@@ -9,7 +9,7 @@ class RMSprop:
         사용하여 최신 기울기들이 더 크게 반영되도록 하였다.
     """
 
-    def __init__(self, lr=0.01, decay_rate = 0.99):
+    def __init__(self, lr=0.01, decay_rate=0.99):
         self.lr = lr
         self.decay_rate = decay_rate
         self.h = None
