@@ -11,7 +11,9 @@ from common.optimizer import SGD
 
 
 # Load MNIST Data
-(x_train, t_train), (x_test, t_test) = load_mnist(normalize=True)
+dataset_dir = os.path.dirname(os.path.abspath('__file__'))
+save_file = dataset_dir + "/mnist.pkl"
+(x_train, t_train), (x_test, t_test) = load_mnist(dataset_dir, save_file, normalize=True)
 
 train_size = x_train.shape[0]
 batch_size = 128

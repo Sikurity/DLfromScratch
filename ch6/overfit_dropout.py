@@ -8,14 +8,16 @@ from dataset.mnist import load_mnist
 from common.multi_layer_net import MultiLayerNet
 from common.trainer import Trainer
 
-(x_train, t_train), (x_test, t_test) = load_mnist(normalize=True)
+dataset_dir = os.path.dirname(os.path.abspath('__file__'))
+save_file = dataset_dir + "/mnist.pkl"
+(x_train, t_train), (x_test, t_test) = load_mnist(dataset_dir, save_file, normalize=True)
 
 # Over Fitting을 위해 적은 데이터만 사용
 x_train = x_train[:300]
 t_train = t_train[:300]
 
 # Set Using Drop-out & Ratio
-use_dropout = True  # Dropoutなしのときの場合はFalseに
+use_dropout = True
 dropout_ratio = 0.2
 # ====================================================
 

@@ -7,7 +7,9 @@ from dataset.mnist import load_mnist
 from common.multi_layer_net import MultiLayerNet
 from common.optimizer import SGD, Adam
 
-(x_train, t_train), (x_test, t_test) = load_mnist(normalize=True)
+dataset_dir = os.path.dirname(os.path.abspath('__file__'))
+save_file = dataset_dir + "/mnist.pkl"
+(x_train, t_train), (x_test, t_test) = load_mnist(dataset_dir, save_file, normalize=True)
 
 # 적은 데이터만 사용
 x_train = x_train[:1000]
