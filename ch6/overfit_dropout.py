@@ -17,7 +17,7 @@ x_train = x_train[:300]
 t_train = t_train[:300]
 
 # Set Using Drop-out & Ratio
-use_dropout = True
+use_dropout = False
 dropout_ratio = 0.2
 # ====================================================
 
